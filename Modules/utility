@@ -1,0 +1,62 @@
+var roleUtility = {
+
+    /** @param {Creep} creep **/
+    run: function(creep) {
+        
+		//This checks to see if the worker needs to get more energy
+			//set creep to harvest
+		if(creep.memory.working && creep.carry.energy == 0) {
+            creep.memory.working = false;
+            creep.say(' harvest');
+		}
+			//set creep to start to work
+		if(!creep.memory.working && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.working = true;
+            creep.say(' Working');
+        }
+		
+		
+		
+		//Building part
+		if(creep.memory.building) {
+            var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+            if(targets.length) {
+                if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                }
+            }
+        }
+		
+		//Upgrade Part
+		if(creep.memory.upgrading) {
+            if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+            }
+        }
+		
+		//repair part
+		if(creep.memory.building) {
+            const targets = creep.room.find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax});
+            var targets2 = creep.room.find(FIND_CONSTRUCTION_SITES);
+            targets.sort((a,b) => a.hits - b.hits);
+
+            if(targets.length > 0) {
+                if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0]);
+                }       
+            }
+            else if(targets2.length) {
+                if(creep.build(targets2[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets2[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                }
+            }
+            
+        }
+		
+		
+        
+    }
+    
+    
+}  
+module.exports = roleUtility;
