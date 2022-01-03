@@ -1,0 +1,14 @@
+var ConsoleLogs = {  
+    run: function() {
+    //Auto Log number of creeps by role
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    console.log('Harvesters: ' + harvesters.length);
+    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+    console.log('Builders: ' + builders.length);
+    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    console.log('upgraders: ' + upgraders.length);
+    var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repair');
+    console.log('repair: ' + upgraders.length);
+    }
+};
+module.exports = ConsoleLogs;
