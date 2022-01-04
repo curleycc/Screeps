@@ -6,6 +6,10 @@ var AutoUnitCreation = {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repair');
     
+    //var Order = 0;
+
+
+
     if(harvesters.length < 10) {
         var newName = 'Harvester' + Game.time;
         //console.log('Spawning new harvester: ' + newName);
