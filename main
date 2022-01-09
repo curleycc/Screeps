@@ -6,7 +6,7 @@ var AutoUnitCreation = require('Auto-Unit-Creation');
 var roleRepair = require('repair');
 var roleTower = require('tower');
 
-
+ 
 module.exports.loop = function MainLoop () {
 
     for(var name in Memory.creeps) {
