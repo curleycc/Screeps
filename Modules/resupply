@@ -1,0 +1,27 @@
+
+
+var resupply = {
+    /** @param {Creep} creep **/
+    run: function (creep) {
+
+        //Determin if ready to work with energy
+        if (creep.memory.building && creep.carry.energy == 0) {
+            creep.memory.building = false;
+            creep.say('🚛 Resupply');
+        }
+        if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.building = true;
+            creep.say('🔋 Ready');
+        }
+
+        //If resupply find a spawn and fill
+        if (!creep.memory.building) {
+            var SupplyPoint = creep.room.find(FIND_MY_SPAWNS);
+            if (creep.withdraw(SupplyPoint[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(SupplyPoint[0], { visualizePathStyle: { stroke: '#0dff25' } });
+            }
+        }
+
+    }
+}
+module.exports = resupply;
