@@ -14,13 +14,21 @@ var resupply = {
             creep.say('🔋 Ready');
         }
 
-        //If resupply find a spawn and fill
-        if (!creep.memory.building) {
+        //Resupply if needed, from spawn if it can. otherwise a soource
+
+        if (!creep.memory.building && creep.room.energyAvailable > 300) {
             var SupplyPoint = creep.room.find(FIND_MY_SPAWNS);
             if (creep.withdraw(SupplyPoint[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(SupplyPoint[0], { visualizePathStyle: { stroke: '#0dff25' } });
             }
+        } else if (!creep.memory.building) {
+            var sources = creep.room.find(FIND_SOURCES);
+            if (creep.harvest(sources[(creep.memory.source)]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[(creep.memory.source)], { visualizePathStyle: { stroke: '#ffaa00' } });
+            }
+
         }
+
 
     }
 }
