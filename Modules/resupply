@@ -16,7 +16,7 @@ var resupply = {
 
         //Resupply if needed, from spawn if it can. otherwise a soource
 
-        if (!creep.memory.building && creep.room.energyAvailable > 300) {
+        if (!creep.memory.building && creep.room.energyAvailable > 500) {
             var SupplyPoint = creep.room.find(FIND_MY_SPAWNS);
             if (creep.withdraw(SupplyPoint[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(SupplyPoint[0], { visualizePathStyle: { stroke: '#0dff25' } });
