@@ -1,0 +1,18 @@
+var roleRanged_Attacker = {
+
+    /** @param {Creep} creep **/
+    run: function (creep) {
+
+
+        //watch for targets if none move to default location
+        const target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if (target) {
+            if (creep.rangedAttack(target) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(target);
+            }
+        }
+
+    }
+};
+
+module.exports = roleRanged_Attacker;

@@ -6,6 +6,7 @@ var AutoUnitCreation = require('Auto-Unit-Creation');
 var roleRepair = require('repair');
 var roleTower = require('tower');
 var test = require('test');
+var roleranged_attacker = require('ranged-attack');
 
 module.exports.loop = function MainLoop() {
 
@@ -45,6 +46,9 @@ module.exports.loop = function MainLoop() {
         }
         if (creep.memory.role == 'repair') {
             roleRepair.run(creep);
+        }
+        if (creep.memory.role == 'RAttack') {
+            roleranged_attacker.run(creep);
         }
     }
 }

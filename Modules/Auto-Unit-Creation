@@ -5,6 +5,7 @@ var AutoUnitCreation = {
         var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
         var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repair');
+        var RAttacks = _.filter(Game.creeps, (creep) => creep.memory.role == 'RAttack');
 
         //var Order = 0;
 
@@ -13,7 +14,7 @@ var AutoUnitCreation = {
         if (harvesters.length < 6) {
             var newName = 'Harvester' + Game.time;
             //console.log('Spawning new harvester: ' + newName);
-            Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE, MOVE], newName,
+            Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], newName,
                 { memory: { role: 'harvester', source: newName.slice(14, 15) % 2 } });
         } else if (builders.length < 4) {
             var newName = 'Builder' + Game.time;
@@ -30,6 +31,11 @@ var AutoUnitCreation = {
             //console.log('Spawning new repair: ' + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], newName,
                 { memory: { role: 'repair', source: newName.slice(14, 15) % 2 } });
+        } else if (RAttacks.length < 2) {
+            var newName = 'RAttack' + Game.time;
+            //console.log('Spawning new ranged attacker: ' + newName);
+            Game.spawns['Spawn1'].spawnCreep([RANGED_ATTACK, RANGED_ATTACK, TOUGH, MOVE], newName,
+                { memory: { role: 'RAttack', source: newName.slice(14, 15) % 2 } });
         }
 
 
