@@ -9,6 +9,7 @@ var roleranged_attacker = require('Role-ranged-attack');
 
 module.exports.loop = function MainLoop() {
 
+    //removes dead creeps memory
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
             delete Memory.creeps[name];
@@ -17,7 +18,10 @@ module.exports.loop = function MainLoop() {
     }
 
     //ConsoleLogs.run();
+    //creates and maintains unit numbers in room
     AutoUnitCreation.run();
+
+    //runs tower commands
     roleTower.run();
 
     //spawn announcement
