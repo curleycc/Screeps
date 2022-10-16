@@ -1,12 +1,11 @@
-var roleHarvester = require('harvester');
-var roleUpgrader = require('upgrader');
-var roleBuilder = require('builder');
+var roleHarvester = require('Role-harvester');
+var roleUpgrader = require('Role-upgrader');
+var roleBuilder = require('Role-builder');
 var ConsoleLogs = require('Console-Unit-logs');
 var AutoUnitCreation = require('Auto-Unit-Creation');
-var roleRepair = require('repair');
-var roleTower = require('tower');
-var test = require('test');
-var roleranged_attacker = require('ranged-attack');
+var roleRepair = require('Role-repair');
+var roleTower = require('Role-tower');
+var roleranged_attacker = require('Role-ranged-attack');
 
 module.exports.loop = function MainLoop() {
 
@@ -20,7 +19,6 @@ module.exports.loop = function MainLoop() {
     //ConsoleLogs.run();
     AutoUnitCreation.run();
     roleTower.run();
-    //test.run();
 
     //spawn announcement
     if (Game.spawns['Spawn1'].spawning) {
